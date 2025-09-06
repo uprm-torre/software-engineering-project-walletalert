@@ -1,0 +1,143 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+/* Top Banner */
+.top-banner {
+  background: #2a9d8f; /* teal green */
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky; /* stays on top when scrolling */
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+
+body {
+  background: #f9f9f9;
+  color: #333;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+header h1 {
+  font-size: 2rem;
+  color: #444;
+}
+
+/* Section Styling */
+section {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  max-width: 600px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+section h2 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+/* Budget Box */
+.budget-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.budget-box span {
+  font-weight: bold;
+  color: #2a9d8f;
+}
+.edit-btn {
+  background: #e9c46a;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.edit-btn:hover {
+  background: #f4a261;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+form label {
+  margin: 10px 0 5px;
+}
+form input, form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.add-btn {
+  margin-top: 15px;
+  background: #2a9d8f;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add-btn:hover {
+  background: #21867a;
+}
+
+/* Expense Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  background: #2a9d8f;
+  color: white;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+tbody tr:hover {
+  background: #f1f1f1;
+}
+
+/* Graph Section */
+.graph-box {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+}

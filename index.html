@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top Banner -->
+  <header class="top-banner">
+    <div class="logo">Wallet-Allert</div>
+    <nav class="nav-links">
+      <!-- future links like Home, Profile, Logout -->
+      <!-- <a href="#">Profile</a>
+      <a href="#">Logout</a> -->
+    </nav>
+  </header>
+
+  <!-- Weekly Budget Section -->
+  <section class="budget-section">
+    <h2>Weekly Budget</h2>
+    <div class="budget-box">
+      <p>Current Budget: <span id="budget-amount">$0</span></p>
+      <button class="edit-btn">Edit Budget</button>
+    </div>
+  </section>
+
+  <!-- Add Expense Form -->
+  <section class="form-section">
+    <h2>Add Expense</h2>
+    <form>
+      <label for="amount">Amount ($)</label>
+      <input type="number" id="amount" placeholder="Enter amount">
+
+      <label for="category">Category</label>
+      <select id="category">
+        <option>Groceries</option>
+        <option>Take Out</option>
+        <option>Electric Bill</option>
+        <option>Water Bill</option>
+        <option>Electronics</option>
+        <option>Clothing</option>
+        <option>Transportation</option>
+        <option>Healthcare</option>
+        <option>Entertainment</option>
+        <option>Rent</option>
+        <option>Other</option>
+      </select>
+
+      <label for="date">Date</label>
+      <input type="date" id="date">
+
+      <button type="submit" class="add-btn">Add Expense</button>
+    </form>
+  </section>
+
+  <!-- Expense List -->
+  <section class="list-section">
+    <h2>Expense History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Expenses will go here later -->
+        <tr>
+          <td>$25</td>
+          <td>Groceries</td>
+          <td>2025-09-06</td>
+          <td><button class="edit-btn">Edit</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Graph Section -->
+  <section class="graph-section">
+    <h2>Budget Progress</h2>
+    <div class="graph-box">
+      <!-- Chart.js canvas will go here later -->
+      <p>[Graph Placeholder]</p>
+    </div>
+  </section>
+
+</body>
+</html>
