@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WalletAlert UI Skeleton</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar" role="banner">
+        <div class="brand" aria-label="WalletAlert">
+          <div class="brand__mark" aria-hidden="true">WA</div>
+          <div class="brand__text">
+            <span class="brand__name">WalletAlert</span>
+          </div>
+        </div>
+        <div class="topbar__user">
+          <span class="user-greeting" aria-live="polite">Hi, "Username"</span>
+          <button class="btn btn--link" type="button" disabled>Logout</button>
+        </div>
+      </header>
+
+      <main class="dashboard" role="main">
+        <section class="metrics" aria-label="Dashboard metrics">
+          <article class="metric" role="listitem">
+            <p class="metric__label">Total Budget</p>
+            <p class="metric__value">$5,000</p>
+          </article>
+          <article class="metric" role="listitem">
+            <p class="metric__label">Total Spent</p>
+            <p class="metric__value">$3,420</p>
+          </article>
+          <article class="metric" role="listitem">
+            <p class="metric__label">Remaining</p>
+            <p class="metric__value">$1,580</p>
+          </article>
+          <article class="metric metric--status" role="listitem">
+            <p class="metric__label">Status</p>
+            <p class="metric__value metric__value--status">On track</p>
+          </article>
+        </section>
+
+        <section class="summary-card card" aria-labelledby="summary-title">
+          <header class="card__header">
+            <h2 class="card__title" id="summary-title">Spending Summary</h2>
+            <label class="field field--inline" for="summary-period">
+              <span class="field__label">Period</span>
+              <select id="summary-period" disabled>
+                <option>Weekly</option>
+                <option>Monthly</option>
+              </select>
+            </label>
+          </header>
+          <div class="summary-card__body">
+            <div class="summary-placeholder" aria-hidden="true">Summary chart placeholder</div>
+          </div>
+        </section>
+
+        <section class="card card--form card--add-expense" aria-labelledby="add-expense-title">
+          <h2 class="card__title" id="add-expense-title">Add Expense</h2>
+          <form class="form" aria-hidden="true">
+            <label class="field">
+              <span class="field__label">Amount</span>
+              <input type="number" placeholder="$0.00" disabled />
+            </label>
+            <label class="field">
+              <span class="field__label">Category</span>
+              <input type="text" placeholder="Dining" disabled />
+            </label>
+            <button class="btn btn--primary" type="button" disabled>Add Expense</button>
+          </form>
+        </section>
+
+        <section class="card card--recent" aria-labelledby="recent-title">
+          <header class="card__header">
+            <h2 class="card__title" id="recent-title">Recent Expenses</h2>
+            <div class="recent-filters">
+              <label class="field field--inline" for="recent-category">
+                <span class="field__label">Category</span>
+                <select id="recent-category" disabled>
+                  <option>All</option>
+                  <option>Dining</option>
+                  <option>Groceries</option>
+                </select>
+              </label>
+              <label class="field field--inline" for="recent-view">
+                <span class="field__label">View</span>
+                <select id="recent-view" disabled>
+                  <option>Table</option>
+                  <option>Cards</option>
+                </select>
+              </label>
+            </div>
+          </header>
+          <table class="recent-table" aria-label="Recent expenses table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nov 12</td>
+                <td>Dining</td>
+                <td>-$42.60</td>
+              </tr>
+              <tr>
+                <td>Nov 11</td>
+                <td>Utilities</td>
+                <td>-$120.00</td>
+              </tr>
+              <tr>
+                <td>Nov 09</td>
+                <td>Groceries</td>
+                <td>-$186.90</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card card--form card--create-budget" aria-labelledby="create-budget-title">
+          <h2 class="card__title" id="create-budget-title">Create Budget</h2>
+          <form class="form" aria-hidden="true">
+            <label class="field">
+              <span class="field__label">Amount</span>
+              <input type="number" placeholder="$0.00" disabled />
+            </label>
+            <label class="field">
+              <span class="field__label">Period</span>
+              <select disabled>
+                <option>Weekly</option>
+                <option>Monthly</option>
+              </select>
+            </label>
+            <button class="btn btn--primary" type="button" disabled>Create Budget</button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
