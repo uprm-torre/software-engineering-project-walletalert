@@ -12,31 +12,18 @@ const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 // Auth0Provider fail and leaving the page blank.
 if (!domain || !clientId) {
   const msg = (
-    <div style={{ padding: 24, fontFamily: "sans-serif" }}>
-      <div
-        style={{
-          border: "1px solid #f2dede",
-          background: "#f8d7da",
-          padding: 16,
-          borderRadius: 6,
-        }}
-      >
+    <div style={{ padding: 24, fontFamily: 'sans-serif' }}>
+      <div style={{ border: '1px solid #f2dede', background: '#f8d7da', padding: 16, borderRadius: 6 }}>
         <strong>Auth0 not configured for local dev.</strong>
-        <p>
-          Set <code>VITE_AUTH0_DOMAIN</code> and{" "}
-          <code>VITE_AUTH0_CLIENT_ID</code> in <code>.env</code> under{" "}
-          <code>apps/web</code> and restart the dev server.
-        </p>
+        <p>Set <code>VITE_AUTH0_DOMAIN</code> and <code>VITE_AUTH0_CLIENT_ID</code> in <code>.env</code> under <code>apps/web</code> and restart the dev server.</p>
         <p>Current values:</p>
-        <pre style={{ whiteSpace: "pre-wrap" }}>
-          VITE_AUTH0_DOMAIN={String(domain)}
+        <pre style={{ whiteSpace: 'pre-wrap' }}>VITE_AUTH0_DOMAIN={String(domain)}
           VITE_AUTH0_CLIENT_ID={String(clientId)}
-          VITE_AUTH0_AUDIENCE={String(audience)}
-        </pre>
+          VITE_AUTH0_AUDIENCE={String(audience)}</pre>
       </div>
     </div>
   );
-  ReactDOM.render(msg, document.getElementById("root"));
+  ReactDOM.render(msg, document.getElementById('root'));
 } else {
   ReactDOM.render(
     <Auth0Provider
@@ -49,6 +36,6 @@ if (!domain || !clientId) {
     >
       <App />
     </Auth0Provider>,
-    document.getElementById("root")
+    document.getElementById('root')
   );
 }

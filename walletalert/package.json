@@ -1,0 +1,20 @@
+{
+  "name": "walletalert",
+  "version": "1.0.0",
+  "description": "WalletAlert application combining a React frontend with a Node.js backend.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start --prefix apps/api\" \"npm run dev --prefix apps/web\"",
+    "dev": "npm run start --prefix apps/web",
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
