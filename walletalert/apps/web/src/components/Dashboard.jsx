@@ -117,9 +117,11 @@ const Dashboard = () => {
 
     // Sort by date descending (newest first)
     return [...filtered].sort((a, b) => {
-      const dateA = new Date(a.date || a.createdAt);
-      const dateB = new Date(b.date || b.createdAt);
-      return dateB - dateA; // Descending order
+      const dateA = new Date(a.date || a.createdAt || 0);
+      const dateB = new Date(b.date || b.createdAt || 0);
+      const timeA = dateA.getTime();
+      const timeB = dateB.getTime();
+      return timeB - timeA; // Descending order (newest first)
     });
   }, [categoryFilter, transactions]);
 
