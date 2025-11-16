@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { formatCurrency as fmtCur } from "../utils/format";
+import { calculateCurrentPeriodSpending } from "../utils/budget";
 
 const formatPercent = (value) =>
   Number.isFinite(value) ? `${Math.round(value)}%` : "—";
@@ -11,10 +12,8 @@ const StatsCards = ({ budgets = [], transactions = [] }) => {
       return Number.isFinite(amt) ? sum + Math.max(0, amt) : sum;
     }, 0);
 
-    const totalSpent = transactions.reduce((sum, tx) => {
-      const amt = Number(tx.amount);
-      return Number.isFinite(amt) && amt > 0 ? sum + amt : sum;
-    }, 0);
+    // Only count spending from the current budget period
+    const totalSpent = calculateCurrentPeriodSpending(transactions, budgets);
 
     const remaining = totalBudget - totalSpent;
     const utilization =
