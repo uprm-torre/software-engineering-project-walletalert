@@ -235,10 +235,21 @@ button {
   background: var(--color-primary);
 }
 
-.stat-card[data-accent="secondary"]::before { background: var(--color-secondary); }
-.stat-card[data-accent="accent"]::before { background: var(--color-accent); }
-.stat-card[data-accent="success"]::before { background: var(--color-success); }
-.stat-card[data-accent="error"]::before { background: var(--color-error); }
+.stat-card[data-accent="secondary"]::before {
+  background: var(--color-secondary);
+}
+
+.stat-card[data-accent="accent"]::before {
+  background: var(--color-accent);
+}
+
+.stat-card[data-accent="success"]::before {
+  background: var(--color-success);
+}
+
+.stat-card[data-accent="error"]::before {
+  background: var(--color-error);
+}
 
 .stat-card:hover {
   transform: translateY(-2px);
@@ -793,21 +804,24 @@ button {
   display: flex;
   align-items: center;
   gap: var(--space-base);
+  min-width: 0;
+  flex: 1;
 }
 
 .category-list__dot {
-  width: 44px;
-  height: 44px;
-  border-radius: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
   display: grid;
   place-items: center;
   border: 2px solid transparent;
   background: rgba(148, 163, 184, 0.12);
-  font-size: 20px;
+  font-size: 16px;
+  flex-shrink: 0;
 }
 
 .category-list__emoji {
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -815,16 +829,23 @@ button {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
+  flex: 1;
 }
 
 .category-list__name {
   font-weight: 600;
   color: var(--color-text);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .category-list__meta {
   font-size: 13px;
   color: var(--color-text-muted);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .category-list__actions {
@@ -936,6 +957,7 @@ button {
 
 /* Responsive layout */
 @media (max-width: 1440px) {
+
   .topbar__inner,
   .app-shell__main {
     padding-left: var(--space-xl);
