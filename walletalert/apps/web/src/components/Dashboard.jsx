@@ -111,8 +111,16 @@ const Dashboard = () => {
   }, [categories]);
 
   const filteredTransactions = useMemo(() => {
-    if (categoryFilter === "all") return transactions;
-    return transactions.filter((tx) => tx.category === categoryFilter);
+    const filtered = categoryFilter === "all"
+      ? transactions
+      : transactions.filter((tx) => tx.category === categoryFilter);
+
+    // Sort by date descending (newest first)
+    return [...filtered].sort((a, b) => {
+      const dateA = new Date(a.date || a.createdAt);
+      const dateB = new Date(b.date || b.createdAt);
+      return dateB - dateA; // Descending order
+    });
   }, [categoryFilter, transactions]);
 
   const totalSpent = useMemo(
