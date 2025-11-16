@@ -725,19 +725,29 @@ button {
 }
 
 .category-manager__inputs {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 110px 120px;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-sm);
   align-items: center;
 }
 
+.category-manager__name-input {
+  flex: 1 1 240px;
+  min-width: 200px;
+  width: 100%;
+}
+
 .category-manager__emoji-input {
+  flex: 0 0 78px;
+  min-width: 72px;
+  max-width: 90px;
   text-align: center;
   font-size: 20px;
   padding: 10px;
 }
 
 .category-manager__add-button {
+  flex: 0 0 120px;
   height: 48px;
   border-radius: 16px;
   font-weight: 600;
@@ -998,14 +1008,14 @@ button {
   }
 
   .category-manager__inputs {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
   }
 
-  .category-manager__emoji-input {
-    width: 100%;
-  }
-
+  .category-manager__name-input,
+  .category-manager__emoji-input,
   .category-manager__add-button {
+    flex: 1 1 100%;
+    min-width: 0;
     width: 100%;
   }
 }
