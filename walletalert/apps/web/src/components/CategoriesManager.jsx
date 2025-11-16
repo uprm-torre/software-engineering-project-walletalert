@@ -136,6 +136,7 @@ const CategoriesManager = ({
               onChange={(e) => setName(e.target.value)}
               aria-invalid={Boolean(error)}
               required
+              className="category-manager__name-input"
             />
             <Input
               id="category-emoji"
