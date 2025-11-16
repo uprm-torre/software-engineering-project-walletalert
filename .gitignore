@@ -1,0 +1,53 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+walletalert/apps/web/dist/
+build/
+.out/
+.vite/
+.parcel-cache/
+.cache/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+.env.* 
+.envrc
+secrets/
+credentials/
+*.secret
+*.key
+*.pem
+*.cer
+auth0*.*
+Auth0*.*
+*.env.*.secret
+
+# IDE / editor
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / coverage
+logs/
+*.log
+coverage/
+
+# Misc
+*.tgz
+*.sublime-workspace
+*.sublime-project
+
+# My Files
+Not Upload/
