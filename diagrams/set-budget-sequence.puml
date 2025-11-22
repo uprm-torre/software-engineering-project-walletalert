@@ -1,0 +1,43 @@
+@startuml
+title Set Weekly Budget - Sequence Diagram (Wallet Alert)
+
+actor Student
+participant "UI" as UI
+participant "BudgetController" as BC
+participant "BudgetService" as BS
+participant "AlertService" as AS
+database "DB" as DB
+
+== Start ==
+Student -> UI : Open "Set Weekly Budget" screen
+UI -> Student : Display input field (weekly amount + optional per-category limits)
+
+Student -> UI : Submit(weeklyAmount, categoryLimits)
+UI -> BC : validateAndSubmit(weeklyAmount, categoryLimits)
+
+alt Invalid input
+  BC -> UI : Show error (negative or non-numeric value)
+  return
+else Valid input
+  BC -> BS : setWeeklyBudget(weeklyAmount)
+  BS -> DB : INSERT OR UPDATE Budget (weeklyAmount)
+  DB --> BS : OK
+
+  alt Category limits provided
+    BC -> BS : setCategoryLimits(categoryLimits)
+    BS -> DB : UPDATE BudgetCategoryLimits
+    DB --> BS : OK
+  else No category limits
+    note right of BS : Default global budget applies
+  end
+
+  BS --> BC : Budget confirmation
+  BC -> AS : initializeAlertsForNewBudget()
+  AS -> DB : CREATE alerts (thresholds 80%, 100%)
+  DB --> AS : OK
+  AS --> BC : Alerts initialized
+  BC -> UI : Display confirmation (budget saved)
+end
+
+== End ==
+@enduml

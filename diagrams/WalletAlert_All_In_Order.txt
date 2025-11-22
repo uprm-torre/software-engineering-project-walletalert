@@ -1,0 +1,587 @@
+
+
+===== Project Proposal Submission =====
+
+1 | P a g e  
+  
+  
+WalletAlert – Project Proposal  
+Summary  
+WalletAlert is a budgeting app designed for college students who struggle to keep track of small daily 
+expenses. Unlike complex finance apps, WalletAlert provides a lightweight, intuitive interface for logging spending, 
+visualizing habits, and receiving al erts before exceeding a budget. The goal is to reduce overspending while making 
+financial tracking simple and stress -free. 
+Problem Statement  
+The Problem: College students often overspend without realizing it, especially on small recurring purchases 
+like coffee  and snacks. Existing finance apps feel overwhelming, cluttered, or time -consuming for users who just 
+want the basics.  
+5 Whys Analysis:  
+Why do students overspend? → They lose track of small purchases.  
+Why do they lose track? → They do not  record expenses consistently.  
+Why don’t they record expenses? → Finance apps are too complex and time -consuming.  
+Why are they too complex? → Most apps are designed for professionals with advanced needs.  
+Why do students avoid them? → Because they need quick, minimal tools, not full financial planning systems.  
+Target Users  
+The primary target users are college students living on tight budgets. Secondary users include young adults 
+or anyone seeking a minimalist alternative to traditional budgeting apps.  2 | P a g e  
+ Proposed Solution  
+WalletAlert offers  a painless way  to log expenses, track spending trends, and receive proactive alerts. The 
+focus is on simplicity, speed, and clarity, not advanced accounting. By reducing the barriers to logging expenses, 
+students will build awareness of their habits and make better fina ncial decisions.  
+Core Features  
+• Quick Expense Entry – Simple form (amount, category, date) with editable timestamps.  
+• Summaries – Weekly and monthly breakdowns with clean graphs.  
+• Budgeting & Alerts – General budgets and category budgets, with alerts when nearing or exceeding limits.  
+Minimum Viable Product (MVP)  
+• A working version of WalletAlert with:  
+• Quick expense entry (amount, category, date).  
+• Weekly and monthly summaries.  
+• General budget with alert notifications.  
+Stretch Goals  
+• Category -specific budgets.  
+• Exporting data (CSV/PDF).  
+• Cloud sync across devices.  
+Related Work  
+• Copilot Money – Full-featured app, but complex for students seeking simplicity.  
+• Mint (discontinued) – Popular budgeting tool but  cluttered with ads and extra features.  
+• Manual tracking (spreadsheets, notebooks) – Simple but inconvenient.  
+
+================================================================================
+
+
+
+===== Project Requirements Submission =====
+
+ 
+   
+ Wallet Alert  
+ 
+Introduction:  
+ The domain of this project focuses on providing an insight into the current way college students 
+organize their expenses and track them all together. As part of the scope of th is document, we will cover 
+the role  and description of the student. The scope is limited to only basic expense tracking methods for 
+students , this excludes things such as taxes , annual expense planning, payment plans, income tracking, 
+etc. 
+Key Concepts  and Roles : 
+• User : An individual currently enrolled in college . 
+• Expense : A recorded transaction containing amount, date/time, and category.  
+• Category: Classification  grouping used when certain items share similarities or become  
+repetitive.  
+• Budget: A spending limit defined by the  student, which is subject to change depending on other 
+factors.  
+Domain Rules /Assumptions : 
+1.  Budget rules  
+• Budgets cannot have negative values.  
+• Budgets may be defined globally and optionally for specific categories.  
+2.  Expense rules  
+• Each expense must include at least an amount and a category.  
+• Expenses cannot have negative values.  
+• Every expense must belong to exactly one category.  
+3. Category rules  
+• Categories are predefined (e.g., Groceries, Takeout, Utilities, Electronics, Other)  
+4. User  Rules  
+•  A student must set a weekly budget  and not go over it . 
+• Students  must record their expenses.  
+ 
+ 
+  
+   
+ Process  (User Flow) : 
+1. Students  set a weekly budget.  
+2. Students record their expenses in a journal  based on amount, type and time.  
+3. Students do a basic subtraction from the budget with their current expenses.  
+4. Students use the subtracted amount to determine how much budget  is left.  
+ 
+ 
+                                        Domain Model Diagram  
+ 
+           
+ 
+   
+  
+   Use Case Model  
+ 
+ 
+Use-Case Narratives : 
+1. Set Weekly Budget  
+Basic Flow:  
+• Student logs into the application.  
+• Student selects “Set Budget”.  
+• Student enters the total weekly budget.  
+• Students save  the budget.  
+Alternative Flows:  
+• Students enter  a negative budget: system shows an error and prompts for valid input.  
+• Students set  budgets for specific categories: system applies to  both global and category -specific limits.  
+• Student changes category -specific budgets after adding expenses: system recalculates alerts and balances.  
+2. Add Expense  
+Basic Flow:  
+• Student logs into the application.  
+• Student selects “Add Expense”.  
+• Students enter  the expense amount.  
+• Students select  or create  a category for the expense.  
+• Students save  the expense.  
+ 
+   
+ • System updates the user’s balance and category totals.  
+Alternative Flows:  
+• Student enters an invalid amount (negative or non -numeric): system shows an error and prompts for valid 
+input.  
+• Student forgets to select a category: system prompts to assign a category.  
+• Student wants to edit the date of the expense (default is today): student updates the date before saving.  
+• Student edits a previously logged expense: system allows modification before finalizing totals.  
+3. Respond to Budget Alert  
+Basic Flow:  
+• Students receive  an alert that spending is near or has exceeded the budget.  
+• Students open  the alert.  
+• Student reviews details (global budget or category -specific).  
+• Student decides how to respond (adjust spending, update budget, etc..).  
+Alternative Flows:  
+• Students ignore  the alert: system continues tracking and will issue further alerts if needed.  
+• Student modifies an expense after an alert: system recalculates totals and updates alerts.  
+• Alert is triggered for a category -specific budget: system highlights the relevant category in the notification.  
+4. View Summary Report  
+Basic Flow:  
+• Student selects “View Summary”.  
+• System generates the report (weekly or monthly).  
+• Student reviews total spending, remaining balance, and breakdown by category.  
+Alternative Flows:  
+• Students  request  a summary before the week/month ends system generates a partial report.  
+• No expenses logged: system generates an empty summary with only the budget values.  
+• Student deletes or edits an expense before generating the report: system recalculates totals and updates the 
+summary.  
+ 
+ 
+  
+   
+ Preliminary Prioritization:  
+ 1. Add and categorize expenses (Highest Priority):   
+• This is the core functionality that enables all other features. Without the ability to log expenses, the system 
+cannot function. Students need this basic capability before any analysis or monitoring can occur.  
+2. Set Weekly budget (high priority)   
+• Essential for establishing spending limits and enabling meaningful tracking, this provides the baseline 
+against which all expenses are measured and is required for budget monitoring functionality.  
+3. Monitor Spending and Alerts (High – Medium Priority)   
+• Provides feedback to help students stay within their budget limits. The alert system is crucial for preventing 
+overspending and achieving the primary goal of budget management .  
+4. Generating Summary Report (Medium Priority)   
+• Important reflection and analysis of spending patterns, but not critical for day -to-day budget management. 
+Students can manually calculate totals if needed while this feature is being developed.  
+MoSCoW categorization:  
+1. Must Have:   
+• Add and categorize expenses – System cannot function without this  
+• Set Weekly budget – Required for meaningful expenses tracking  
+2. Should have:   
+• Monitor Spending and Alerts – Transforms passive tracking into active management.  
+3. Could have:  
+• Generating Summary Report – Valuable but not essential for core functionality.  
+4. Won’t have:   
+• Advanced analytics beyond basic summaries  
+• Integration with external banking systems  
+
+================================================================================
+
+
+
+===== Project Revised Requirements Submission =====
+
+ 
+   
+ Wallet Alert  
+ 
+Introduction:  
+ The domain of this project focuses on providing an insight into the current way college 
+students organize their expenses and track them all together. As part of the scope of th is 
+document, we will cover the role and description of the student. The scope is limited to only basic 
+expense tracking methods for students , this excludes things such as taxes , annual expense 
+planning, payment plans, income tracking, etc.  
+Key Concepts  and Roles : 
+• Student: An individual currently enrolled in college . 
+• Expense : A recorded transaction containing amount, date/time, and category.  
+• Category: A classification grouping expenses (e.g., Food, Transportation, Supplies, 
+Entertainment).  
+• Budget: A spending limit defined by the  student, which is subject to change depending on 
+other factors.  
+Domain Rules/Assumptions : 
+1.  Budget rules  
+• Budgets cannot have negative values.  
+• Budgets may be defined globally and optionally for specific categories.  
+2.  Expense rules  
+• Each expense must include at least an amount and a category.  
+• Expenses cannot have negative values.  
+• Every expense must belong to exactly one category.  
+3. Category rules  
+• Categories are predefined (e.g., Groceries, Takeout, Utilities, Electronics, Other)  
+4. Student Rules  
+•  A student must set a weekly budget  and not go over it . 
+• Students  must record their expenses.   
+   
+  
+Process (User Flow) : 
+1. Students  set a weekly budget.  
+2. Students record their expenses in a journal  based on amount, type and time.  
+3. Students do a basic subtraction from the budget with their current expenses.  
+4. Students use the subtracted amount to determine how much budget is left.  
+ 
+Domain Model Diagram  
+ 
+ 
+  
+ 
+   
+ Use Case Model  
+ 
+ 
+Use Case Narrative : 
+Set Weekly Budget:  
+Basic Flow:  
+• Student logs into the application.  
+• Student selects “Set Budget”.   
+• Student enters the total weekly budget.  
+• Students optionally set  budgets for specific categories.  
+• Students  save the budget.  
+Alternative Flows:  
+1. Students enter a negative budget: system shows an error and prompts for valid input.  
+2. Student changes category -specific budgets after adding expenses: system recalculates 
+alerts and balances.  
+3. Student skips category -specific budgets:  system only applies to  the global budget.  
+Add and Categorize Expense:  
+ 
+   
+ Basic Flow:  
+• Student logs into the application.  
+• Student selects “Add Expense.”  
+• Students enter the expense amount.  
+• Students select or creates a category for the expense.  
+• Students optionally edit  the date/time (default is current timestamp).  
+• Students save the expense.  
+• System updates the user’s balance and category totals.  
+Alternative Flows:  
+1. Student enters an invalid amount (negative or non -numeric) : system shows an error and 
+prompts for valid input.  
+2. Student forgets to select a category : system prompts to assign a category.  
+3. Student wants to edit a previously logged expense : system allows modification before 
+finalizing totals.  
+Monitor Spending and Alerts:  
+Basic Flow:  
+• Student logs expenses throughout the week.  
+• System continuously updates balance and spending totals.  
+• When spending reaches a predefined threshold, the system generates an alert.  
+• If spending exceeds the budget, a different alert is generated.  
+ 
+ 
+ 
+Alternative Flows:   
+   
+ 1. Student ignores the alert:  system continues tracking and triggers additional alerts if limits 
+are exceeded.  
+2. Student modifies an expense after an alert : system recalculates totals and adjusts alerts 
+accordingly.  
+3. Alert is triggered for a category -specific budget : system highlights the relevant category 
+in the notification.  
+Generating  Summary Report:  
+Basic Flow:  
+• At the end of the week/month, the system automatically generates a summary report.  
+• Report includes total spending, remaining balance, and breakdown by category.  
+• Students  can view the summary within the app.  
+Alternative Flows:  
+1. Student requests a summary before the week/month ends: system generates a partial 
+report.  
+2. Students have no expenses logged : system generates an empty summary with default 
+budget values.  
+3. Student deletes an expense before generating a summary : system recalculates totals 
+and updates the report.  
+Preliminary Prioriti zation:  
+1. Add and categorize expenses (Highest Priority):  
+a. This is the core functionality that enables all other features.  Without the ability 
+to log expenses, th e system cannot function. Students need this basic 
+capability before any analysis or monitoring can occur.  
+2. Set Weekly budget (high priority)  
+a. Essential for establishing spending limits and enabling meaningful tracking, 
+this provides the baseline against which all expenses are measured and is 
+required for budget monitoring functionality.   
+   
+ 3. Monitor Spending and Alerts ( High – Medium P riority)  
+a. Provides feedback to help students stay within their budget  limits. The alert 
+system is crucial for preventing overspending and achieving the primary goal  of 
+budget management . 
+4. Generating Summary Report (Medium Priority)  
+a. Important reflection and analysis of spending patterns, but not critical for day -
+to-day budget management. Students can manually calculate totals if needed 
+while this feature is being developed.  
+MoSCoW categorization:  
+1. Must Have:  
+a. Add and categorize expenses – System cannot function without this  
+b. Set Weekly budget – Required for meaningful expenses tracking  
+2. Should have:  
+a. Monitor Spending and Alerts – Transforms passive tracking into active 
+management.  
+3. Could have:  
+a. Generating Summary Report – Valuable but not essential for core functionality . 
+4. Won’t have:  
+a. Advanced analytics beyond basic summaries  
+b. Integration with external banking systems  
+ 
+
+================================================================================
+
+
+
+===== Project Design Document =====
+
+1. Introduction:  
+Wallet Alert’s Purpose is t o provide  users a simple way to keep track of their expenses and to 
+provide a visual queue when they are reaching a weekly budget or get notify when they go over it , 
+we also allow the user to categorize their expenses and date as well. As part of our scope for this 
+design we will focus on providing an interactive and easy-to-follow  process for users to input their 
+expenses and visualize their budget . It is important to mention that it is not within our scope to 
+include complex  mathematical expressions to calculate things like  taxes.  
+2. UI Mockups:  
+3.  Activity/Sequence Diagrams:
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4. Class Diagrams:  
+ 
+Class Descriptions:  
+1. Student: Represents the user of the system who manages their expenses and 
+budget.  
+• Main Responsibilities : 
+✓ Stores user’s name, weekly budget, and expense records  
+✓ Records and views budget and expenses  
+• Dependencies and Associations:  
+✓ Has a one -to-many association with Expense  
+✓ Has a one -to-one association with Budget  
+• SOLID Principle:  
+✓ Single Responsibility:  Is only responsible for storing and managing 
+user-related financial data.  
+  
+2. Expense: Represents an expense made by a student.  
+• Main Responsibilities:  
+✓ Stores the amount, date, and category of each expense  
+✓ Provides getters for the amount, date, and category of each expense  
+• Dependencies and Associations:  
+✓ Belongs to one Category  
+✓ Associated with one Student  
+• SOLID Principle:  
+✓ Single Responsibility:  Is only responsible for representing an 
+expense’s data  
+  
+3. Budget: Represents the amount limit that the student is willing to spend for a period 
+or for a certain category.  
+• Main Responsibilities:  
+✓ Stores the total limit, the remaining amount, and the category specific 
+limits  
+✓ It updates the totals with each expense  
+✓ Checks the total and category specific budgets  
+• Dependenc ies and Associations:  
+✓ Associated with one Student  
+✓ Aggregates multiple Category budgets  
+✓ Generate  alerts if needed  
+✓ Interacts with Alert Service  to trigger notifications when limits are 
+exceeded  • SOLID Principle:  
+✓ Open/Closed:  Can be extended to support new budget types or time 
+frames without modifying existing code  
+  
+4. Category: Represents the classification of an expense.  
+• Main Responsibilities:  
+✓ Stores the name of the classification  
+✓ Provides a getter for the name of the classification  
+• Dependencies and Associations:  
+✓ One-to-many relationship with Expense  
+✓ Associated with Budget if category -specific budgets are defined  
+• SOLID Principle:  
+✓ Interface Segregation : Only provides essential operations relevant to 
+category handling without unnecessary methods  
+  
+5. Alert: Represents a notification that warns a student when the total expenses are 
+getting near or exceeding  their set limit.  
+• Main Responsibilities:  
+✓ Stores the type, the message, and the triggered status for the 
+notification  
+✓ Provides functions to trigger or dismiss the notification  
+• Dependencies and Associations:  
+✓ Created and managed by Alert Service  
+✓ Associated with Budget to determine when to trigger alerts  
+• SOLID Principle:  
+✓ Liskov Substitution:  Allows substitution by specialized alert types 
+without breaking system functionality  
+  
+6. Alert Service : Handles the logic of sending alerts to the student based on their 
+spending activity.  
+• Main Responsibilities:  
+✓ Checks alerts and notifies the student if a limit is getting reach or has 
+been exceeded  
+• Dependenc ies and Associations:  
+✓ Depends on Budget  
+✓ Aggregates multiple Alert objects to notify the student  
+• SOLID Principle:  ✓ Dependency Inversion: Depends on rather than concrete 
+implementations, enabling flexibility and testing  
+ 
+5. Other Design  Considerations:  
+ 
+• Design Patterns Used or Planned:  
+ 
+✓ Singleton:  Ensures only one instance of a class exists while providing global 
+access. Used for configuration management (settings, storage paths, 
+notifications) to keep system behavior consistent.  
+  
+✓ Observer:  Allows multiple objects to receive updates when another 
+changes. Used between Budget and Alert Service so alerts trigger 
+automatically when spending approaches or exceeds limits.  
+  
+✓ Factory Method:  Provides an interface for object creation while letting 
+subclasses decide the type. Used to create Expense, Alert, or Category 
+objects dynamically, improving flexibility and scalability.  
+  
+• Technical Assumptions:  
+ 
+✓ The system will only support student users, and all functionalities are 
+designed with this profile in mind.  
+  
+✓ There will be no banking or financial account integrations, meaning the 
+application does not process transactions or connect to external payment 
+systems.  
+  
+✓ All data will be stored locally within the user’s device, ensuring privacy and 
+offline functionality without the need for server communication or cloud 
+storage.  
+ 
+
+================================================================================
+
+
+
+===== Revised Design =====
+
+WalletAlert Design Document  
+ 
+ 
+1. Introduction:  
+Wallet Alert’s Purpose is to provide  users a simple way to keep track of their expenses and to 
+provide a visual queue when they are reaching a weekly budget or get notify when they go over it , 
+we also allow the user to categorize their expenses and date as well. As part of our scope for this 
+design , we will focus on providing an interactive and easy-to-follow  process for users to input their 
+expenses and visualize their budget . It is important to mention that it is not within our scope to 
+include complex  mathematical expressions to calculate things like  taxes.  
+2. UI Mockups:  
+ 
+3. Activity/Sequence Diagrams   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4. Class Diagrams:  
+Class Descriptions:  
+1. Student : Represents the user of the system who manages their expenses and budget.  
+• Main Responsibilities : 
+✓ Stores user’s name, weekly budget,  and expense records  
+✓ Records and views budget and expenses  
+• Dependencies and Associations:  
+✓ Has a one -to-many association with Expense  
+✓ Has a one -to-one association with Budget  
+• SOLID Principle:  
+✓ Single Responsibility:  Is only responsible for storing and managing user -
+related financial data.  
+  
+2. Expense: Represents an expense made by a student.  
+• Main Responsibilities:  
+✓ Stores the amount, date,  and category of each expense  
+✓ Provides getters for the amount, date,  and category of each expense  
+• Dependencies and Associations:  
+✓ Belongs to one Category  
+✓ Associated with one Student  
+• SOLID Principle:  
+✓ Single Responsibility:  Is only responsible for representing an expense’s 
+data 
+  
+3. Budget : Represents the amount limit that the student is willing to spend for a period or 
+for a certain category.  
+• Main Responsibilities:  
+✓ Stores the total limit, the remaining amount,  and the category specific 
+limits  
+✓ It updates the totals with each expense  
+✓ Checks the total and category specific budgets  
+• Dependenc ies and Associations:  
+✓ Associated with one Student  
+✓ Aggregates multiple Category budgets  
+✓ Generate  alerts if needed  
+✓ Interacts with Alert Service  to trigger notifications when limits are 
+exceeded  
+• SOLID Principle:  
+✓ Open/Closed:  Can be extended to support new budget types or time 
+frames without modifying existing code    
+4. Category: Represents the classification of an expense.  
+• Main Responsibilities:  
+✓ Stores the name of the classification  
+✓ Provides a getter for the name of the classification  
+• Dependencies and Associations:  
+✓ One-to-many relationship with Expense  
+✓ Associated with Budget if category -specific budgets are defined  
+• SOLID Principle:  
+✓ Interface Segregation : Only provides essential operations relevant to 
+category handling without unnecessary methods  
+  
+5. Alert : Represents a notification that warns a student when the total expenses are getting 
+near or exceeding  their set limit.  
+• Main Responsibilities:  
+✓ Stores the type, the message, and the triggered status for the notification  
+✓ Provides functions to trigger or dismiss the notification  
+• Dependencies and Associations:  
+✓ Created and managed by Alert Service  
+✓ Associated with Budget to determine when to trigger alerts  
+• SOLID Principle:  
+✓ Liskov Substitution:  Allows substitution by specialized alert types 
+without breaking system functionality  
+  
+6. Alert Service : Handles the logic of sending alerts to the student based on their spending 
+activity.  
+• Main Responsibilities:  
+✓ Checks alerts and notifies the student if a limit is getting reach or has been 
+exceeded  
+• Dependenc ies and Associations:  
+✓ Depends on Budget  
+✓ Aggregates multiple Alert objects to notify the student  
+• SOLID Principle:  
+✓ Dependency Inversion: Depends on rather than concrete 
+implementations, enabling flexibility and testing  
+ 
+5. Other Design  Considerations:  
+ 
+• Design Patterns Used or Planned:  
+ ✓ Singleton:  Ensures only one instance of a class exists while providing global 
+access. Used for configuration management (settings, storage paths, notifications) 
+to keep system behavior consistent.  
+  
+✓ Observer:  Allows multiple objects to receive updates when another changes. 
+Used between Budget and Alert Service so alerts trigger automatically when 
+spending approaches or exceeds limits.  
+  
+✓ Factory Method:  Provides an interface for object creation while letting 
+subclasses decide the type. Used to create Expense, Alert, or Category objects 
+dynamically, improving flexibility and scalability.  
+  
+• Technical Assumptions:  
+ 
+✓ The system will only support student users, and all functionalities are designed 
+with this profile in mind.  
+  
+✓ There will be no banking or financial account integrations, meaning the 
+application does not process transactions or connect to external payment systems.  
+  
+✓ All data will be stored locally within the user’s device, ensuring privacy and 
+offline functionality without the need for server communication or cloud storage.  
+ 
+
+================================================================================
+

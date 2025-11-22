@@ -1,0 +1,21 @@
+@startuml
+title Activity Diagram - Add Expense (Wallet Alert)
+start
+:Open "Add Expense" form;
+:Enter amount, category, and date;
+if (Is input valid?) then (No)
+  :Show error (invalid or negative amount);
+  --> :Enter amount, category, and date;
+else (Yes)
+  :Save expense to database;
+  :Update budget totals;
+  if (Is category limit exceeded?) then (Yes)
+    :Trigger category alert;
+  endif
+  if (Is global budget exceeded?) then (Yes)
+    :Trigger global alert;
+  endif
+  :Show confirmation message;
+endif
+stop
+@enduml

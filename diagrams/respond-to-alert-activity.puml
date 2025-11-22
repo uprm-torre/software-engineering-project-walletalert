@@ -1,0 +1,16 @@
+@startuml
+title Activity Diagram - Respond to Budget Alert (Wallet Alert)
+start
+:Receive alert (category or global);
+:Open alert details;
+if (Student chooses to ignore alert?) then (Yes)
+  :Dismiss alert;
+else (No)
+  :Choose "Adjust Budget";
+  :Enter new budget limit;
+  :Update budget in database;
+  :Recalculate totals and alerts;
+endif
+:Display updated status (resolved / active);
+stop
+@enduml

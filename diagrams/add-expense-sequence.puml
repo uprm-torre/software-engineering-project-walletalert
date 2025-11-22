@@ -1,0 +1,49 @@
+@startuml
+title Add Expense - Sequence Diagram (Wallet Alert)
+
+actor Student
+participant "UI" as UI
+participant "ExpenseController" as EC
+participant "ExpenseService" as ES
+participant "BudgetService" as BS
+participant "AlertService" as AS
+database "DB" as DB
+
+== Start ==
+Student -> UI : Open "Add Expense" form
+UI -> Student : Display form (amount, date, category)
+
+Student -> UI : Submit(amount, date, category)
+UI -> EC : validateAndSubmit(amount, date, category)
+
+alt Invalid input
+  EC -> UI : Show error (negative or non-numeric amount)
+  return
+else Missing category
+  EC -> UI : Prompt to select/create category
+  return
+else Valid input
+  EC -> ES : createExpense(amount, date, category)
+  ES -> DB : INSERT Expense
+  DB --> ES : Expense{id}
+  ES --> EC : Expense{id}
+  
+  EC -> BS : updateBudgetTotals(Expense{id})
+  BS -> DB : UPDATE Budget totals
+  DB --> BS : OK
+  BS --> EC : newRemainingBalance
+
+  EC -> AS : checkAlerts(newRemainingBalance, category)
+  AS -> DB : READ thresholds
+  DB --> AS : thresholds
+  alt Threshold reached/exceeded
+    AS --> EC : Alert{type,message}
+    EC -> UI : Show alert banner/modal
+  else Within limits
+    AS --> EC : NoAlert
+    EC -> UI : Show success toast
+  end
+end
+
+== End ==
+@enduml

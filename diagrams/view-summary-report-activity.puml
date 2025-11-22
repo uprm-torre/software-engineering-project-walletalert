@@ -1,0 +1,17 @@
+@startuml
+title Activity Diagram - View Summary Report (Wallet Alert)
+start
+:Open "View Summary Report" screen;
+:Select time period (weekly, monthly, or custom);
+:System retrieves expenses and budget data;
+:Calculate total spending and remaining balance;
+if (Is budget exceeded?) then (Yes)
+  :Display alert indicator on report;
+else (No)
+  :Proceed without alert indicator;
+endif
+:Show summary chart and spending breakdown;
+:Display list of recent expenses;
+:Allow user to return to main menu;
+stop
+@enduml

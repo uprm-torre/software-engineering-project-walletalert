@@ -1,0 +1,47 @@
+@startuml
+title Respond to Budget Alert - Sequence Diagram (Wallet Alert)
+
+actor Student
+participant "UI" as UI
+participant "AlertService" as AS
+participant "BudgetService" as BS
+database "DB" as DB
+
+Student -> UI : Open Alerts
+UI -> AS : getActiveAlerts()
+AS -> DB : SELECT alerts WHERE active=1
+DB --> AS : alerts[]
+AS --> UI : alerts[]
+
+Student -> UI : Open alert details
+UI -> AS : getAlertDetails(alertId)
+AS -> DB : SELECT alert by id
+DB --> AS : Alert{type, scope, delta}
+AS --> UI : details
+
+alt Student adjusts budget
+  Student -> UI : Adjust budget (newLimit)
+  UI -> BS : updateBudgetLimit(newLimit, scope)
+  BS -> DB : UPDATE budget limit
+  DB --> BS : OK
+  BS --> UI : Updated balance/limit
+  UI -> AS : recheckAlerts(scope)
+  AS -> DB : READ thresholds & totals
+  DB --> AS : data
+  AS --> UI : Updated (resolved/active)
+else Student edits an expense
+  UI -> BS : recalcTotalsAfterEdit(expenseId)
+  BS -> DB : UPDATE expense + totals
+  DB --> BS : OK
+  BS --> UI : Updated totals
+  UI -> AS : recheckAlerts(scope)
+  AS -> DB : READ data
+  DB --> AS : data
+  AS --> UI : Updated (resolved/active)
+else Student ignores
+  UI -> AS : snooze(alertId)
+  AS -> DB : UPDATE alert snoozedUntil
+  DB --> AS : OK
+  AS --> UI : Snoozed
+end
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+title WalletAlert - Use Case Model
+
+actor "Student" as student
+
+rectangle "WalletAlert" {
+    usecase "Add Expense" as UC1
+    usecase "Categorize Expense" as UC2
+    usecase "Edit Expense" as UC3
+    
+    usecase "Set Weekly Budget" as UC4
+    usecase "Adjust Budget" as UC5
+    
+    usecase "Monitor Spending & Alerts" as UC6
+    
+    usecase "View Report" as UC7
+    usecase "View Weekly Report" as UC8
+    usecase "View Monthly Report" as UC9
+}
+
+' Relaciones
+student --> UC1
+UC1 --> UC2 : <<include>>
+student --> UC3
+
+student --> UC4
+UC5 .> UC4 : <<extend>>
+
+student --> UC6
+
+student --> UC7
+UC8 --|> UC7
+UC9 --|> UC7
+
+@enduml

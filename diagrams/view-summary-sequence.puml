@@ -1,0 +1,46 @@
+@startuml
+title View Weekly/Monthly Summary Report - Sequence Diagram (Wallet Alert)
+
+actor User
+participant "UI" as UI
+participant "ReportController" as RC
+participant "ReportService" as RS
+participant "BudgetService" as BS
+database "DB" as DB
+
+== Start ==
+User -> UI : Open "View Summary" screen
+UI -> User : Display options (Weekly / Monthly)
+
+User -> UI : Select report type (weekly or monthly)
+UI -> RC : generateReport(type)
+
+alt No expenses logged
+  RC -> DB : SELECT * FROM Expenses
+  DB --> RC : empty
+  RC -> UI : Show empty report (Budget values only)
+else Expenses exist
+  RC -> RS : calculateTotals(type)
+  RS -> DB : SELECT expenses, budgets, categories WHERE period=type
+  DB --> RS : expenseList, budgetInfo, categoryTotals
+
+  RS -> BS : getBudgetLimits()
+  BS -> DB : READ global and category limits
+  DB --> BS : limits
+  BS --> RS : budgetLimits
+
+  RS --> RC : Summary{totalSpent, remaining, byCategory}
+  RC -> UI : Display summary report (tables + chart)
+end
+
+alt User edits or deletes an expense
+  User -> UI : Modify expense
+  UI -> RS : updateData()
+  RS -> DB : UPDATE expense table
+  DB --> RS : OK
+  RS -> RC : refreshReport()
+  RC -> UI : Display updated summary
+end
+
+== End ==
+@enduml

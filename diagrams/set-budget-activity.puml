@@ -1,0 +1,16 @@
+@startuml
+title Activity Diagram - Set Weekly Budget (Wallet Alert)
+start
+:Open "Set Budget" form;
+:Enter weekly amount and optional category limits;
+if (Is input valid?) then (No)
+  :Show error message;
+  --> :Enter weekly amount and optional category limits;
+else (Yes)
+  :Save global budget amount;
+  :Save optional category limits;
+  :Initialize alerts for thresholds (80%, 100%);
+  :Display confirmation message;
+endif
+stop
+@enduml

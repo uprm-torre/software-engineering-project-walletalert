@@ -1,0 +1,63 @@
+@startuml
+title Class Diagram - Wallet Alert 
+
+class Student {
+  - name : String
+  - weeklyBudget : float
+  - expenses : List<Expense>
+  --
+  + setBudget(amount : float)
+  + addExpense(expense : Expense)
+  + getRemainingBudget() : float
+}
+
+class Expense {
+  - amount : float
+  - date : Date
+  - category : Category
+  --
+  + getAmount() : float
+  + getCategory() : Category
+  + getDate() : Date
+}
+
+class Category {
+  - name : String
+  --
+  + getName() : String
+}
+
+class Budget {
+  - totalLimit : float
+  - remaining : float
+  - categoryLimits : Map<Category, float>
+  --
+  + updateTotals(expense : Expense)
+  + checkCategoryLimit(category : Category) : boolean
+  + checkGlobalLimit() : boolean
+}
+
+class Alert {
+  - type : String
+  - message : String
+  - triggered : boolean
+  --
+  + trigger()
+  + dismiss()
+}
+
+class AlertService {
+  + checkAlerts(budget : Budget)
+  + notifyStudent(student : Student, alert : Alert)
+}
+
+' --- Relationships ---
+Student "1" --> "1" Budget : sets
+Student "1" --> "*" Expense : records
+Expense "*" --> "1" Category : belongs to
+Budget "1" --> "*" Alert : generates
+Budget "*" --> "*" Category : defines limits for
+AlertService --> Alert : uses
+AlertService --> Budget : checks
+
+@enduml

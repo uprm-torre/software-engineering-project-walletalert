@@ -1,0 +1,48 @@
+@startuml
+title WalletAlert - Domain Model
+
+class Student {
+  +name
+}
+
+class Expense {
+  +amount
+  +dateTime
+}
+
+class Category {
+  +name
+}
+
+class Budget {
+  +amount
+  +period   ' weekly / monthly
+  +scope    ' global / category
+}
+
+class Alert {
+  +threshold
+  +type      ' global / category
+}
+
+class SummaryReport {
+  +period    ' weekly / monthly
+  +totalSpending
+}
+
+' ==== RELACIONES DEL DOMINIO ====
+Student "1" -- "0..*" Expense : records
+Student "1" -- "1..*" Budget : sets
+Student "1" -- "0..*" SummaryReport : receives
+
+Expense "1" -- "1" Category : belongs to
+Category "1" -- "0..*" Expense : groups
+
+Budget "1" -- "0..*" Alert : triggers
+Budget "0..*" -- "0..*" Category : applies to
+
+SummaryReport "1" -- "0..*" Expense : aggregates
+SummaryReport "1" -- "0..*" Category : breakdown
+SummaryReport "1" -- "1" Budget : comparedWith
+
+@enduml
