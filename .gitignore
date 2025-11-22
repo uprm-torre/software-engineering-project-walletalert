@@ -31,7 +31,7 @@ Auth0*.*
 *.env.*.secret
 
 # IDE / editor
-.vscode/
+#.vscode/
 .idea/
 *.code-workspace
 
