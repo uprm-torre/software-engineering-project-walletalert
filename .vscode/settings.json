@@ -1,0 +1,6 @@
+{
+  "vitest.enable": true,
+  "vitest.commandLine": "npm test --",
+  "vitest.configFile": "unit-test/vitest.config.js",
+  "vitest.workspaceFolder": "${workspaceFolder}/unit-test"
+}
