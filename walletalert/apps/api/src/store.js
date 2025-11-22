@@ -1,3 +1,9 @@
+/**
+ * Module: store.js
+ * Purpose: Provide data access operations with an in-memory fallback when MongoDB is unavailable.
+ * Notes: Each exported async function first attempts to use a live database connection; if absent, it uses Maps.
+ * Design: Fallback enables fast local/unit testing without external services. Mongo path maps _id to id for uniformity.
+ */
 import { ObjectId } from 'mongodb';
 import { getDb } from './db.js';
 
@@ -94,6 +100,12 @@ async function ensureDbCategories(categoriesCol, auth0_id) {
     return await categoriesCol.find({ auth0_id }).toArray();
 }
 
+/**
+ * Upsert (create or update) a user by Auth0 id.
+ * @param {string} auth0_id
+ * @param {string} email
+ * @returns {Promise<{user:Object,created:boolean}>}
+ */
 export async function upsertUser(auth0_id, email) {
     if (!auth0_id) return { user: null, created: false };
     const cols = getCollections();
@@ -116,6 +128,11 @@ export async function upsertUser(auth0_id, email) {
     return { user: res.value, created };
 }
 
+/**
+ * Retrieve a user by Auth0 id.
+ * @param {string} auth0_id
+ * @returns {Promise<Object|null>}
+ */
 export async function getUser(auth0_id) {
     if (!auth0_id) return null;
     const cols = getCollections();
@@ -124,6 +141,11 @@ export async function getUser(auth0_id) {
     return await usersCol.findOne({ auth0_id });
 }
 
+/**
+ * List budgets for a user.
+ * @param {string} auth0_id
+ * @returns {Promise<Array>}
+ */
 export async function listBudgets(auth0_id) {
     const cols = getCollections();
     if (!cols) return memBudgets.get(auth0_id) || [];
@@ -132,6 +154,12 @@ export async function listBudgets(auth0_id) {
     return docs.map(mapBudget);
 }
 
+/**
+ * Create a budget for a user.
+ * @param {string} auth0_id
+ * @param {{period:string,amount:number}} budget
+ * @returns {Promise<Object>}
+ */
 export async function createBudget(auth0_id, budget) {
     const cols = getCollections();
     if (!cols) {
@@ -149,6 +177,13 @@ export async function createBudget(auth0_id, budget) {
     return mapBudget(created);
 }
 
+/**
+ * Update a budget by id for a user.
+ * @param {string} auth0_id
+ * @param {string} id
+ * @param {Object} changes
+ * @returns {Promise<Object>}
+ */
 export async function updateBudget(auth0_id, id, changes) {
     const cols = getCollections();
     if (!cols) {
@@ -170,6 +205,12 @@ export async function updateBudget(auth0_id, id, changes) {
     return mapBudget(res.value);
 }
 
+/**
+ * Delete a user's budget by id.
+ * @param {string} auth0_id
+ * @param {string} id
+ * @returns {Promise<Object>}
+ */
 export async function deleteBudget(auth0_id, id) {
     const cols = getCollections();
     if (!cols) {
@@ -187,6 +228,11 @@ export async function deleteBudget(auth0_id, id) {
     return mapBudget(res.value);
 }
 
+/**
+ * List transactions for a user.
+ * @param {string} auth0_id
+ * @returns {Promise<Array>}
+ */
 export async function listTransactions(auth0_id) {
     const cols = getCollections();
     if (!cols) return memTx.get(auth0_id) || [];
@@ -195,6 +241,12 @@ export async function listTransactions(auth0_id) {
     return docs.map(mapTransaction);
 }
 
+/**
+ * Create a transaction for a user.
+ * @param {string} auth0_id
+ * @param {{amount:number,date?:string,description?:string,category?:string}} tx
+ * @returns {Promise<Object>}
+ */
 export async function createTransaction(auth0_id, tx) {
     const cols = getCollections();
     if (!cols) {
@@ -210,6 +262,13 @@ export async function createTransaction(auth0_id, tx) {
     return mapTransaction(created);
 }
 
+/**
+ * Update a transaction by id.
+ * @param {string} auth0_id
+ * @param {string} id
+ * @param {Object} changes
+ * @returns {Promise<Object>}
+ */
 export async function updateTransaction(auth0_id, id, changes) {
     const cols = getCollections();
     if (!cols) {
@@ -228,6 +287,12 @@ export async function updateTransaction(auth0_id, id, changes) {
     return mapTransaction(res.value);
 }
 
+/**
+ * Delete a transaction by id.
+ * @param {string} auth0_id
+ * @param {string} id
+ * @returns {Promise<Object>}
+ */
 export async function deleteTransaction(auth0_id, id) {
     const cols = getCollections();
     if (!cols) {
@@ -245,6 +310,11 @@ export async function deleteTransaction(auth0_id, id) {
     return mapTransaction(res.value);
 }
 
+/**
+ * List categories for a user (seeding defaults if absent).
+ * @param {string} auth0_id
+ * @returns {Promise<Array>}
+ */
 export async function listCategories(auth0_id) {
     const cols = getCollections();
     if (!cols) {
@@ -256,6 +326,13 @@ export async function listCategories(auth0_id) {
     return docs.map(mapCategory);
 }
 
+/**
+ * Create a category (preventing duplicates, trimming name, normalizing emoji).
+ * @param {string} auth0_id
+ * @param {string} name
+ * @param {string|null} emojiValue
+ * @returns {Promise<Object>}
+ */
 export async function createCategory(auth0_id, name, emojiValue) {
     const trimmed = normalizeCategoryName(name);
     if (!trimmed) throw new Error('Category name is required.');
@@ -295,6 +372,13 @@ export async function createCategory(auth0_id, name, emojiValue) {
     return mapCategory(created);
 }
 
+/**
+ * Update a category's emoji.
+ * @param {string} auth0_id
+ * @param {string} id
+ * @param {{emoji:string}} updates
+ * @returns {Promise<Object>}
+ */
 export async function updateCategory(auth0_id, id, updates = {}) {
     if (!id) throw new Error('Category id is required.');
     if (!Object.prototype.hasOwnProperty.call(updates, 'emoji')) {
@@ -335,6 +419,12 @@ export async function updateCategory(auth0_id, id, updates = {}) {
     return mapCategory(res.value);
 }
 
+/**
+ * Delete a category by id.
+ * @param {string} auth0_id
+ * @param {string} id
+ * @returns {Promise<Object>}
+ */
 export async function deleteCategory(auth0_id, id) {
     const cols = getCollections();
     if (!cols) {
@@ -352,6 +442,12 @@ export async function deleteCategory(auth0_id, id) {
     return mapCategory(res.value);
 }
 
+/**
+ * Check if a category exists (case-insensitive) for a user.
+ * @param {string} auth0_id
+ * @param {string} name
+ * @returns {Promise<boolean>}
+ */
 export async function categoryExists(auth0_id, name) {
     const trimmed = normalizeCategoryName(name);
     if (!trimmed) return false;
