@@ -1,3 +1,8 @@
+/**
+ * Module: categories.js
+ * Purpose: Normalize category names and derive presentation metadata (color, emoji, initials) for UI rendering.
+ * Notes: Predefined categories have stable styles; custom categories receive deterministic fallback colors via hashing.
+ */
 const CATEGORY_CONFIG = {
   "college/education": { color: "#8b5cf6", initials: "CE", emoji: "🎓", label: "College/Education" },
   "apartment/housing": { color: "#f59e0b", initials: "AH", emoji: "🏠", label: "Apartment/Housing" },
@@ -41,6 +46,12 @@ const getFallbackColor = (name) => {
 
 export const CATEGORY_KEYS = Object.keys(CATEGORY_CONFIG);
 
+/**
+ * Build a presentation object for a category name.
+ * @param {string|null|undefined} name - Raw category name input.
+ * @param {{emojiOverrides?:Object,colorOverrides?:Object}} [options] - Optional override maps.
+ * @returns {{key:string,label:string,color:string,initials:string,emoji:string,originalName:string}} Presentation data.
+ */
 export const getCategoryPresentation = (name, options = {}) => {
   const { emojiOverrides = {}, colorOverrides = {} } = options;
 
@@ -83,6 +94,12 @@ export const getCategoryPresentation = (name, options = {}) => {
   };
 };
 
+/**
+ * Convenience: return just the color for a category (with overrides applied).
+ * @param {string|null|undefined} name
+ * @param {{emojiOverrides?:Object,colorOverrides?:Object}} [options]
+ * @returns {string} Hex color string.
+ */
 export const getCategoryColor = (name, options) =>
   getCategoryPresentation(name, options).color;
 
