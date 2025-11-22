@@ -5,6 +5,12 @@ import Input from "./ui/Input";
 import Select from "./ui/Select";
 import Button from "./ui/Button";
 
+/**
+ * Form for creating a budget entry with amount and period fields.
+ * Performs basic validation then POSTs /api/budgets; notifies parent via onCreated.
+ *
+ * @param {{ onCreated?: function }} props
+ */
 const BudgetForm = ({ onCreated }) => {
   const { getAccessTokenSilently } = useAuth0();
   const [amount, setAmount] = useState("");

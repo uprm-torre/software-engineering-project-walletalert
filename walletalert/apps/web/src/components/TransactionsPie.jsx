@@ -10,6 +10,11 @@ import {
 import { formatCurrency } from "../utils/format";
 import { getCategoryColor, getCategoryPresentation } from "../utils/categories";
 
+/**
+ * Pie chart visualization of spending by category.
+ *
+ * @param {{ transactions?: Array, categoryDisplayOptions?: Object }} props
+ */
 const TransactionsPie = ({
   transactions = [],
   categoryDisplayOptions = {},

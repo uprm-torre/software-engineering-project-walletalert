@@ -24,6 +24,10 @@ const VIEW_OPTIONS = [
   { value: "pie", label: "Category Share" },
 ];
 
+/**
+ * Primary authenticated experience: fetches user data, orchestrates CRUD handlers,
+ * and renders stats, charts, transaction views, budgets, quick expense form, and category manager.
+ */
 const Dashboard = () => {
   const { getAccessTokenSilently } = useAuth0();
   const [budgets, setBudgets] = useState([]);

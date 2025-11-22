@@ -5,6 +5,11 @@ import { getCategoryPresentation } from "../utils/categories";
 
 const MAX_EMOJI_LENGTH = 3; // allow emoji plus potential variation selectors
 
+/**
+ * Trim and truncate emoji input to a short glyph representation for safe storage/display.
+ * @param {string} value
+ * @returns {string}
+ */
 const normalizeEmoji = (value = "") => {
   const trimmed = value.trim();
   if (!trimmed) return "";
@@ -12,6 +17,11 @@ const normalizeEmoji = (value = "") => {
   return chars.slice(0, MAX_EMOJI_LENGTH).join("");
 };
 
+/**
+ * Management panel for creating, deleting, and updating categories and their emoji.
+ *
+ * @param {{ categories?: Array, onCreate?: function, onDelete?: function, onUpdateEmoji?: function }} props
+ */
 const CategoriesManager = ({
   categories = [],
   onCreate,

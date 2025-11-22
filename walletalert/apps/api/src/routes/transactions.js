@@ -3,6 +3,9 @@ import { listTransactions, createTransaction, updateTransaction, deleteTransacti
 
 const router = express.Router();
 
+/**
+ * Transaction routes: CRUD for expenses with category validation.
+ */
 router.post('/', async (req, res) => {
     const sub = req.auth.payload.sub;
     const { amount, category, date, description } = req.body;

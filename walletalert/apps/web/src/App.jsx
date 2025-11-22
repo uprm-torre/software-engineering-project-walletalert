@@ -5,6 +5,11 @@ import Dashboard from "./components/Dashboard";
 import LoginPanel from "./components/LoginPanel";
 import api from "./api/api";
 
+/**
+ * Root application shell responsible for bootstrapping the authenticated user
+ * and toggling between the login panel and main dashboard views.
+ * Triggers the /api/bootstrap call after login to ensure the user exists server-side.
+ */
 export default function App() {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 

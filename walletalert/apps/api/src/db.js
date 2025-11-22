@@ -6,6 +6,10 @@ dotenv.config();
 let client;
 let db;
 
+/**
+ * Connect to MongoDB using MONGO_URI or assembled credentials.
+ * @returns {Promise<import('mongodb').Db|null>} Database handle or null when unavailable.
+ */
 export async function connect() {
   // Prefer explicit MONGO_URI. If not provided, build one from components
   let uri = process.env.MONGO_URI;
@@ -35,15 +39,27 @@ export async function connect() {
   }
 }
 
+/**
+ * Retrieve the cached database connection (if connected).
+ * @returns {import('mongodb').Db|undefined}
+ */
 export function getDb() {
   return db;
 }
 
+/**
+ * Close the MongoDB client if present.
+ * @returns {Promise<void>}
+ */
 export async function close() {
   if (client) await client.close();
 }
 
 // Ensure common indexes used by the app. Safe to call multiple times.
+/**
+ * Create common indexes for the application collections; no-op when DB is absent.
+ * @returns {Promise<void>}
+ */
 export async function ensureIndexes() {
   const database = getDb();
   if (!database) {

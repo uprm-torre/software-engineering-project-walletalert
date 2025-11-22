@@ -40,4 +40,8 @@ if (prod) {
   };
 }
 
+/**
+ * Auth0-aware middleware that validates JWTs in production and supplies a permissive
+ * development identity (or attempts validation when a token is provided) in non-prod environments.
+ */
 export { checkJwt };

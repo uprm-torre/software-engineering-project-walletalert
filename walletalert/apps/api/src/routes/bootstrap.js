@@ -4,6 +4,9 @@ import { checkJwt } from "../auth.js";
 
 const router = express.Router();
 
+/**
+ * Bootstrap routes: ensures the authenticated user exists in the data store.
+ */
 // Informational GET: guide callers that bootstrap is POST-only (avoid default "Cannot GET /api/bootstrap")
 router.get("/", (req, res) => {
     res.status(405).json({ error: "Method Not Allowed", message: "Bootstrap is POST-only. Use POST /api/bootstrap" });

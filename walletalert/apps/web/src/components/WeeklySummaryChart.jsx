@@ -144,6 +144,11 @@ const PERIODS = [
   { value: "monthly", label: "Monthly", builder: buildMonthlySeries },
 ];
 
+/**
+ * Bar chart that compares spending against budgets over recent weekly/monthly periods.
+ *
+ * @param {{ budgets?: Array, transactions?: Array }} props
+ */
 const WeeklySummaryChart = ({ budgets = [], transactions = [] }) => {
   const defaultPeriod = useMemo(() => {
     if (budgets.some((b) => b.period === "weekly")) return "weekly";

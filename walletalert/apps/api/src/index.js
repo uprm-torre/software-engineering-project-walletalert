@@ -62,6 +62,9 @@ app.get("/api/profile", checkJwt, (req, res) => {
 
 const port = process.env.PORT || 3000;
 
+/**
+ * Initialize database connection, ensure indexes, and start the HTTP server.
+ */
 async function start() {
   await connectDb();
   // create required indexes if they don't exist

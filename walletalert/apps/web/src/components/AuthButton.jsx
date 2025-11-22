@@ -2,6 +2,9 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "./ui/Button";
 
+/**
+ * Auth button that renders Sign In or Log Out depending on Auth0 session state.
+ */
 const AuthButton = () => {
   const { logout, isAuthenticated, loginWithRedirect } = useAuth0();
 

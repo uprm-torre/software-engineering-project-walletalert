@@ -3,6 +3,9 @@ import { listCategories, createCategory, updateCategory, deleteCategory } from "
 
 const router = express.Router();
 
+/**
+ * Category routes: list, create, update emoji, and delete categories for the user.
+ */
 router.get("/", async (req, res) => {
     const sub = req.auth.payload.sub;
     try {

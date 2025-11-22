@@ -3,8 +3,13 @@ import { formatCurrency as fmtCur } from "../utils/format";
 import { calculateCurrentPeriodSpending } from "../utils/budget";
 
 const formatPercent = (value) =>
-  Number.isFinite(value) ? `${Math.round(value)}%` : "—";
+  Number.isFinite(value) ? `${Math.round(value)}%` : "-";
 
+/**
+ * Displays summary budget metrics (total budget, spent, remaining) using current-period spending.
+ *
+ * @param {{ budgets?: Array, transactions?: Array }} props
+ */
 const StatsCards = ({ budgets = [], transactions = [] }) => {
   const totals = useMemo(() => {
     const totalBudget = budgets.reduce((sum, budget) => {

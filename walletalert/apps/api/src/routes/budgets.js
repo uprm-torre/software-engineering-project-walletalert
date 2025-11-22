@@ -3,6 +3,9 @@ import { listBudgets, createBudget, updateBudget, deleteBudget } from "../store.
 
 const router = express.Router();
 
+/**
+ * Budget routes: create/list/update/delete budgets for the authenticated user.
+ */
 // Create a new budget
 router.post("/", async (req, res) => {
     const { period, amount, categories } = req.body;

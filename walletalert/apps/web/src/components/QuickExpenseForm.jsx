@@ -5,6 +5,12 @@ import Input from "./ui/Input";
 import Select from "./ui/Select";
 import Button from "./ui/Button";
 
+/**
+ * Quick-add expense form for logging a single transaction with minimal inputs.
+ * Validates amount/category, posts to /api/transactions, and notifies parent via onAdded.
+ *
+ * @param {{ onAdded?: function, categories?: string[] }} props
+ */
 const QuickExpenseForm = ({ onAdded, categories = [] }) => {
   const { getAccessTokenSilently } = useAuth0();
   const [amount, setAmount] = useState("");
