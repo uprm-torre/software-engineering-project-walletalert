@@ -1,0 +1,18 @@
+{
+  "name": "walletalert-unit-tests",
+  "version": "1.0.0",
+  "description": "Unit tests for WalletAlert application",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:api": "vitest run api/",
+    "test:web": "vitest run web/"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^1.0.0",
+    "vitest": "^1.0.0",
+    "supertest": "^6.3.3"
+  }
+}
