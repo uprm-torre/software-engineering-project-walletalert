@@ -1,56 +1,178 @@
-# WalletAlert
+# 💰 WalletAlert
 
-WalletAlert is a full-stack budgeting companion built for students who want a fast, no-fuss way to stay on top of spending. It pairs a React dashboard with an Express API so you can set weekly and category budgets, quickly log expenses by amount/date/category, monitor trends with clear charts, and get proactive Auth0-secured alerts as you near or exceed limits. Data lives in MongoDB, works locally or on Render, and focuses on essentials (no banking integrations) to keep tracking simple and stress-free.
+> **A smart budgeting companion designed for students who value simplicity and control**
 
-## Technologies Used
+WalletAlert is your no-fuss financial tracking solution. Set weekly and category budgets, log expenses in seconds, visualize spending trends with intuitive charts, and receive proactive alerts before you overspend. Built with modern web technologies and secured with Auth0, it keeps your financial data safe while staying refreshingly simple.
 
-- **Frontend**: React, Vite, Recharts for data visualization
-- **Backend**: Node.js, Express
-- **Database**: MongoDB for persistent data storage
-- **Authentication**: Auth0 for secure user authentication and authorization
-- **Deployment**: Render for hosting both API and web applications
-- **Testing**: Vitest for unit testing
+---
 
-## Getting Started
-- Prerequisites: Node.js 18+ and npm.
-- Clone the repo, then work from the `walletalert` directory for app code.
+## ✨ What Makes WalletAlert Special
 
-### API (apps/api)
-1) `cd walletalert/apps/api`
-2) `cp .env.example .env` and fill Auth0 + MongoDB values (`AUTH0_AUDIENCE`, `AUTH0_ISSUER_BASE_URL`, `MONGO_URI` or `MONGO_USER/MONGO_PASSWORD/MONGO_HOST`, `WEB_ORIGIN`, `PORT`).
-3) `npm install`
-4) `npm run dev` (nodemon) or `npm start`
+🎯 **Student-Focused Design** – Built for real student budgets and spending patterns  
+⚡ **Lightning Fast** – Log expenses in seconds  
+📊 **Visual Insights** – Clear charts show exactly where your money goes  
+🔔 **Smart Alerts** – Get notified as you approach budget limits  
+🔒 **Secure by Default** – Auth0 authentication keeps your data protected  
+🚀 **Deploy Anywhere** – Works locally or on Render with zero hassle
 
-### Web (apps/web)
-1) `cd walletalert/apps/web`
-2) `cp .env.example .env` and set `VITE_API_BASE_URL`, `VITE_AUTH0_DOMAIN`, `VITE_AUTH0_CLIENT_ID`, `VITE_AUTH0_AUDIENCE`.
-3) `npm install`
-4) `npm run dev` (Vite dev server) or `npm run build && npm run serve`
+---
 
-## Code Organization
-- `walletalert/apps/api`: Express server, Auth0 middleware, Mongo integration, and REST routes for budgets, transactions, categories, and bootstrap.
-- `walletalert/apps/web`: React SPA (Auth0, Axios, Recharts) with dashboards, charts, and forms.
-- `doc/api.md` and `doc/web.md`: Function-level documentation for the API and web layers.
-- `diagrams/`: PlantUML sources (e.g., `diagrams/class-diagram.puml`) and consolidated text (`WalletAlert_All_In_Order.txt`) for UML artifacts.
-- `unit-test/`: Separate testing sandbox (see its package.json for tasks).
+## 🛠 Tech Stack
 
-## UML Class Diagram
-- The latest UML sources live in `diagrams/class-diagram.puml` (PlantUML). Generate visuals with any PlantUML renderer.
+<table>
+<tr>
+<td width="50%">
 
-## Key Diagrams
+**Frontend**
+- ⚛️ React + Vite
+- 📈 Recharts for data visualization
+- 🎨 Modern, responsive UI
+
+</td>
+<td width="50%">
+
+**Backend**
+- 🟢 Node.js + Express
+- 🍃 MongoDB for data persistence
+- 🔐 Auth0 for authentication
+- 🧪 Vitest for testing
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18 or higher
+- npm package manager
+- MongoDB instance (local or cloud)
+- Auth0 account
+
+### 🔧 API Setup
+
+```bash
+# Navigate to API directory
+cd walletalert/apps/api
+
+# Create environment file
+cp .env.example .env
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+**Environment Variables Required:**
+- `AUTH0_AUDIENCE` – Your Auth0 API identifier
+- `AUTH0_ISSUER_BASE_URL` – Your Auth0 domain
+- `MONGO_URI` – MongoDB connection string
+- `WEB_ORIGIN` – Frontend URL for CORS
+- `PORT` – Server port (default: 3000)
+
+### 🎨 Web App Setup
+
+```bash
+# Navigate to web directory
+cd walletalert/apps/web
+
+# Create environment file
+cp .env.example .env
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+**Environment Variables Required:**
+- `VITE_API_BASE_URL` – Backend API URL
+- `VITE_AUTH0_DOMAIN` – Your Auth0 domain
+- `VITE_AUTH0_CLIENT_ID` – Your Auth0 client ID
+- `VITE_AUTH0_AUDIENCE` – Your Auth0 API audience
+
+---
+
+## 📁 Project Structure
+
+```
+software-engineering-project-walletalert/
+├── walletalert/apps/
+│   ├── api/                 # Express backend
+│   │   └── src/
+│   │       ├── routes/      # REST endpoints
+│   │       ├── auth.js      # Auth0 middleware
+│   │       ├── db.js        # MongoDB connection
+│   │       └── store.js     # In-memory fallback
+│   └── web/                 # React frontend
+│       └── src/
+│           ├── api/         # Axios client
+│           ├── components/  # UI components
+│           └── utils/       # Helper functions
+├── diagrams/                # UML diagrams (.puml + .png)
+├── doc/                     # API & web documentation
+├── unit-test/               # Vitest test suite
+├── Mockup/                  # UI mockups
+└── README.md
+```
+
+---
+
+## 📊 System Architecture
+
+### Use Case Model
+The system supports four main use cases: managing expenses (add, categorize, edit), setting and adjusting budgets, monitoring spending with alerts, and viewing weekly/monthly reports.
+
 <p align="center">
-  <img src="diagrams/use-case-model.png" alt="Use case model" width="800" />
-</p>
-<p align="center">
-  <img src="diagrams/domain-model.png" alt="Domain model" width="800" />
-</p>
-<p align="center">
-  <img src="diagrams/class-diagram.png" alt="Class diagram" width="800" />
-</p>
-<p align="center">
-  <img src="diagrams/add-expense-sequence.png" alt="Add expense sequence" width="800" />
+  <img src="diagrams/use-case-model.png" alt="Use case model showing user interactions" width="800" />
 </p>
 
-## Notes
-- In development, the API falls back to in-memory stores when MongoDB is not configured, enabling quick local runs.
-- The web app will show a helpful message if Auth0 env vars are missing instead of failing silently.
+### Domain Model
+Core domain concepts include Student, Expense, Category, Budget, Alert, and SummaryReport, with relationships that enforce budget rules and expense categorization.
+
+<p align="center">
+  <img src="diagrams/domain-model.png" alt="Domain model showing data relationships" width="800" />
+</p>
+
+### Sequence Diagram: Adding an Expense
+This sequence diagram illustrates the process of a student adding a new expense, from the frontend input to backend processing and database storage.
+<p align="center">
+  <img src="diagrams/add-expense-sequence.png" alt="Sequence diagram for adding an expense" width="800" />
+</p>
+
+---
+
+## 📚 Documentation
+
+- **`doc/api.md`** – Comprehensive API endpoint documentation
+- **`doc/web.md`** – Frontend component and service guide
+- **`diagrams/`** – PlantUML source files for all diagrams
+- **`WalletAlert_All_In_Order.txt`** – Consolidated UML documentation
+
+---
+
+## 💡 Development Notes
+
+### 🧪 Testing
+```bash
+cd unit-test
+npm install
+npm test
+```
+
+### 🐛 Development Mode Features
+- **In-Memory Fallback**: API uses in-memory storage when MongoDB isn't configured
+- **Helpful Errors**: Web app shows clear messages for missing Auth0 configuration
+- **Hot Reload**: Both API and web support live reloading during development
+
+### 🌐 Deployment
+Both API and web apps are configured for seamless deployment on Render:
+- **API**: Automatically detects production environment
+- **Web**: Optimized build with `npm run build`
+
+---

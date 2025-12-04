@@ -1,6 +1,6 @@
 # WalletAlert Presentation Skeleton
 
-This folder holds a bare-bones, static mock of the WalletAlert dashboard—ideal only the layout not without any real functionality.
+This folder holds a bare-bones, static mock of the WalletAlert dashboard—ideal for showing the layout without any real functionality.
 
 ## How to use
 - Open `index.html` directly in a browser (double-click the file or drag it into a tab).
