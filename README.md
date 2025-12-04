@@ -1,6 +1,6 @@
 # WalletAlert
 
-WalletAlert is a personal finance helper that pairs an Express API with a React front-end to track budgets, log expenses, and visualize spending trends with Auth0-secured access.
+WalletAlert is a full-stack budgeting companion built for students who want a fast, no-fuss way to stay on top of spending. It pairs a React dashboard with an Express API so you can set weekly and category budgets, quickly log expenses by amount/date/category, monitor trends with clear charts, and get proactive Auth0-secured alerts as you near or exceed limits. Data lives in MongoDB, works locally or on Render, and focuses on essentials (no banking integrations) to keep tracking simple and stress-free.
 
 ## Technologies Used
 
@@ -36,6 +36,20 @@ WalletAlert is a personal finance helper that pairs an Express API with a React 
 
 ## UML Class Diagram
 - The latest UML sources live in `diagrams/class-diagram.puml` (PlantUML). Generate visuals with any PlantUML renderer.
+
+## Key Diagrams
+<p align="center">
+  <img src="diagrams/use-case-model.png" alt="Use case model" width="800" />
+</p>
+<p align="center">
+  <img src="diagrams/domain-model.png" alt="Domain model" width="800" />
+</p>
+<p align="center">
+  <img src="diagrams/class-diagram.png" alt="Class diagram" width="800" />
+</p>
+<p align="center">
+  <img src="diagrams/add-expense-sequence.png" alt="Add expense sequence" width="800" />
+</p>
 
 ## Notes
 - In development, the API falls back to in-memory stores when MongoDB is not configured, enabling quick local runs.
